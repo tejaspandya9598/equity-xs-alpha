@@ -13,7 +13,7 @@ performance.
 ```
 pip install -e ".[dev]"
 python scripts/run_research.py      # full run: download -> signals -> IC -> portfolios -> ML
-pytest                              # 16 tests on synthetic data
+pytest                              # 30 tests on synthetic data
 ```
 
 Results land in `reports/results.md` and `reports/figures/`.
@@ -111,7 +111,8 @@ forward — 60 months minimum training, 12-month test blocks, rolled to the end 
 
 The ML model is deliberately boring: shallow LightGBM (depth 4, 15 leaves, heavy
 subsampling) regressing the **cross-sectional percentile rank** of next-month return on
-the 6 signals. Rank labels keep the target stationary across vol regimes. The model's
+every signal in the panel: eight by default, the six price and volume signals with
+`--no-text`. Missing values are passed through, not dropped (see the ablation below). Rank labels keep the target stationary across vol regimes. The model's
 OOS score is then treated exactly like any raw signal — same z-scoring, same quintile
 portfolio, same costs — so the comparison against the equal-weight signal combo is fair.
 
@@ -190,6 +191,12 @@ Note the turnover column next to it. `amihud` earns its Sharpe on 0.14 turnover;
 `ml_combo` needs 1.07 to earn less. At 10 bps that gap is affordable and at 50 bps it
 is not, which is more useful to know about the ML model than its Sharpe.
 <!-- RESULTS:END -->
+
+**Re-run on 2026-10-02.** One more month of data (to 2026-10) and Yahoo's re-adjusted
+history move every number a little and none of the conclusions: Amihud's t is 4.83 and
+it is still the only signal that survives Benjamini-Hochberg (2.88, q = 0.03 on the
+shared window); `ml_combo` earns Sharpe 0.87 against −0.60 for the equal-weight combo,
+and `amihud` 0.95. The tables above are the 2026-09-03 run they are dated to.
 
 ## What the text signal is actually made of
 
