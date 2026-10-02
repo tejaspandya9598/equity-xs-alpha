@@ -79,7 +79,7 @@ def plot_feature_importance(imp: pd.DataFrame) -> Path:
 
 
 def plot_cumulative_ic(ics: dict, start=None) -> Path:
-    """Running sum of monthly ICs. A signal that works climbs; one that does not wanders.
+    """Running sum of monthly ICs. A signal that works climbs; one that does not, wanders.
 
     A bar chart of mean IC hides the thing that decides whether a signal is tradable,
     which is whether the IC arrives steadily or in two good years. The cumulative line

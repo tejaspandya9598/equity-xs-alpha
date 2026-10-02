@@ -42,7 +42,7 @@ def test_a_filing_cannot_be_traded_on_the_day_it_is_stamped():
 
 
 def test_a_stale_filing_stops_voting():
-    """Otherwise a 2016 10-K is still expressing an opinion in 2026."""
+    """Otherwise, a 2016 10-K is still expressing an opinion in 2026."""
     scores = _scores([("AAA", "2020-01-15", -0.02), ("AAA", "2020-04-15", -0.01)])
     panel = tone_change_panel(scores)
     dates = pd.DatetimeIndex(["2020-05-29", "2020-12-31"])

@@ -78,7 +78,7 @@ def main(refresh: bool = False, no_text: bool = False, eval_start: str | None = 
     # Restrict baselines to the ML OOS window so the comparison is fair. That window
     # moves when the signal set changes - adding a signal that only starts in 2016
     # shortens what the walk-forward can train on - so the ablation has to be pinned to
-    # the same start or it is comparing two different samples and calling it an effect.
+    # the same start, or it is comparing two different samples and calling it an effect.
     oos_start = scores_clean.index.min()
     if eval_start is not None:
         oos_start = max(oos_start, pd.Timestamp(eval_start))

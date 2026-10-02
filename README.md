@@ -193,7 +193,7 @@ is not, which is more useful to know about the ML model than its Sharpe.
 <!-- RESULTS:END -->
 
 **Re-run on 2026-10-02.** One more month of data (to 2026-10) and Yahoo's re-adjusted
-history move every number a little and none of the conclusions: Amihud's t is 4.83 and
+history move every number a little and none of the conclusions: Amihud's t is 4.83, and
 it is still the only signal that survives Benjamini-Hochberg (2.88, q = 0.03 on the
 shared window); `ml_combo` earns Sharpe 0.87 against −0.60 for the equal-weight combo,
 and `amihud` 0.95. The tables above are the 2026-09-03 run they are dated to.
@@ -220,7 +220,7 @@ The annual sawtooth is not the news cycle.
 | 10-Q | -0.0097 | 14,544 |
 
 An annual report reads darker than a quarterly for reasons of genre, not of business:
-it is 1.6x longer and it is where the lawyers put the risk factors. Difference tone
+it is 1.6x longer, and it is where the lawyers put the risk factors. Difference tone
 across that boundary and every transition inherits it:
 
 | transition | mean tone change | n |
@@ -296,7 +296,7 @@ uv run python scripts/run_research.py --no-text --eval-start 2015-02-01   # the 
 - **Survivorship bias.** The universe is *today's* S&P 500 members extended backward.
   Names that were removed (bankruptcies, acquisitions, deletions) never enter the
   panel. This flatters long legs and dampens short legs — real point-in-time
-  constituents (CRSP/Compustat via WRDS) are the correct fix and the code is structured
+  constituents (CRSP/Compustat via WRDS) are the correct fix, and the code is structured
   so only `universe.py` needs to change.
 - **No delisting returns**, same direction of bias as above.
 - **Adjusted-close total returns** from Yahoo fold dividends into price; good enough
